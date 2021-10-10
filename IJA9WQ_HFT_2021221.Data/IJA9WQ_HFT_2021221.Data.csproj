@@ -5,6 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="LocalDB.mdf" />
+    <None Remove="LocalDB_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="LocalDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalDB_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\IJA9WQ_HFT_2021221.Models\IJA9WQ_HFT_2021221.Models.csproj" />
   </ItemGroup>
 
