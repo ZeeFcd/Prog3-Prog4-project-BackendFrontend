@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IJA9WQ_HFT_2021221
+namespace IJA9WQ_HFT_2021221.Client
 {
     class Program
     {
