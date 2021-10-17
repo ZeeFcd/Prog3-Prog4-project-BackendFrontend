@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IJA9WQ_HFT_2021221.Data
 {
-    class WeddingDbContext : DbContext
+    public class WeddingDbContext : DbContext
     {
         public virtual DbSet<Husband> Husbands { get; set; }
         public virtual DbSet<Wife> Wives { get; set; }
