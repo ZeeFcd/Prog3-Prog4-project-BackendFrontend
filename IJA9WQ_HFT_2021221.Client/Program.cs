@@ -1,4 +1,6 @@
 ﻿using System;
+using IJA9WQ_HFT_2021221.Data;
+using System.Linq;
 
 namespace IJA9WQ_HFT_2021221.Client
 {
@@ -6,7 +8,19 @@ namespace IJA9WQ_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            WeddingDbContext db = new WeddingDbContext();
+
+            var q = from x in db.Weddings
+                    select new
+                    {
+                        Hely = x.Place,
+
+
+
+                    };
+
+            ;
+
         }
     }
 }
