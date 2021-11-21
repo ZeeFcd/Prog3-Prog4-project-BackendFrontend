@@ -43,5 +43,8 @@ namespace IJA9WQ_HFT_2021221.Logic
         {
             wifeRepo.Update(wife);
         }
+
+       
+
     }
 }

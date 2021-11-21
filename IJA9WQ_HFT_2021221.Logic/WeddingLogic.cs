@@ -43,5 +43,54 @@ namespace IJA9WQ_HFT_2021221.Logic
         {
             weddingRepo.Update(wedding);
         }
+
+        public IEnumerable<KeyValuePair<string, string>> MarriedCouples()
+        {
+            return from x in weddingRepo.ReadAll()
+                   select new KeyValuePair<string, string>
+                   (x.Husband.Name, x.Wife.Name);
+
+        }
+        public IEnumerable<KeyValuePair<string, string>> WeddingPlacesByWife()
+        {
+            return from x in weddingRepo.ReadAll()
+                   select new KeyValuePair<string, string>
+                          (x.Wife.Name, x.Place);
+
+        }
+
+        public IEnumerable<KeyValuePair<string, int>> WeddingPricesByHusband()
+        {
+            return from x in weddingRepo.ReadAll()
+                   select new KeyValuePair<string, int>
+                          (x.Husband.Name, x.Price);
+
+        }
+
+
+        public double AverageAge() 
+        {
+            var q = weddingRepo.ReadAll();
+            return q.Select(x => x.Husband.Age).Concat(q.Select(y => y.Wife.Age)).Average();
+                         
+        }
+
+        public  string WifeWhereHusbandIsOldest() 
+        {
+            var q = weddingRepo.ReadAll();
+
+            /*var q2 = q.Where(x => x.Husband.Age == q.Max(y => y.Husband.Age))
+                    .Select(z=>z.Wife.Name)
+                    .FirstOrDefault();*/
+
+            return (from x in q
+                    where x.Husband.Age == q.Max(y => y.Husband.Age)
+                    select x.Wife.Name)
+                     .FirstOrDefault();
+                       
+        }
+
+
+
     }
 }
