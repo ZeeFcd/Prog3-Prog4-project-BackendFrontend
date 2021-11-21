@@ -67,11 +67,11 @@ namespace IJA9WQ_HFT_2021221.Data
             Husband husb4 = new Husband() { Id = 4, WifeID =4, Name="Shawn Martinez", Age =40 };
             Husband husb5 = new Husband() { Id = 5, WifeID =2, Name="William Tenorman", Age =29 };
 
-            Husband wife1 = new Husband() { Id = 1,  Name ="Janett Brown", Age =20 };
-            Husband wife2 = new Husband() { Id = 2,  Name = "Natalie Jones", Age =26 };
-            Husband wife3 = new Husband() { Id = 3,  Name = "Luna Garcia", Age =18 };
-            Husband wife4 = new Husband() { Id = 4,  Name = "Sofia White", Age =38 };
-            Husband wife5 = new Husband() { Id = 5,  Name = "Victoria Davis", Age =27 };
+            Wife wife1 = new Wife() { Id = 1,  Name ="Janett Brown", Age =20 };
+            Wife wife2 = new Wife() { Id = 2,  Name = "Natalie Jones", Age =26 };
+            Wife wife3 = new Wife() { Id = 3,  Name = "Luna Garcia", Age =18 };
+            Wife wife4 = new Wife() { Id = 4,  Name = "Sofia White", Age =38 };
+            Wife wife5 = new Wife() { Id = 5,  Name = "Victoria Davis", Age =27 };
 
 
             Wedding wedd1 = new Wedding() { Id = 1, HusbandID=1,WifeID=3,Place="London",Price=10000 };
