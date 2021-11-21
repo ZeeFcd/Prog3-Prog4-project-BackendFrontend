@@ -4,6 +4,8 @@ using IJA9WQ_HFT_2021221.Repository;
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IJA9WQ_HFT_2021221.Test
 {
@@ -20,12 +22,23 @@ namespace IJA9WQ_HFT_2021221.Test
             var mockHusbandRepository = new Mock<IHusbandRepository>();
             var mockWifeRepository = new Mock<IWifeRepository>();
             var mockWeddingRepository = new Mock<IWeddingRepository>();
-
-
             h = new HusbandLogic(mockHusbandRepository.Object);
             wi = new WifeLogic(mockWifeRepository.Object);
-            w = new WeddingLogic(mockWeddingRepository.Object);
 
+            Husband fakehusband1 = new Husband() {Id=1,Name="Jerry Thompson", Age=17 };
+            Husband fakehusband2 = new Husband() {Id = 2, Name = "Gerald Black", Age = 32 };
+            Wife fakewife1 = new Wife() { Id = 1, Name = "Pamela Mensen", Age = 20 };
+            Wife fakewife2 = new Wife() { Id=2 ,Name="Angela White", Age =28};
+            Wedding fakewedding1 = new Wedding() { Id=1 ,Place = "Los Angeles", Price = 4000, Husband =fakehusband1,Wife=fakewife1 };
+            Wedding fakewedding2 = new Wedding() { Id=2,Place="Hungary",Price=2000 ,Husband = fakehusband2, Wife = fakewife2 };
+
+            var weddings = new List<Wedding>() {fakewedding1,fakewedding2  }.AsQueryable();
+
+            mockWeddingRepository.Setup((t) => t.ReadAll())
+                .Returns(weddings);
+
+            w = new WeddingLogic(mockWeddingRepository.Object);
+            ;
         }
 
         [TestCase(27,true)]
@@ -76,27 +89,61 @@ namespace IJA9WQ_HFT_2021221.Test
 
         [Test]
         public void MarriedCouplesTest()
-        { 
+        {
+            var result=w.MarriedCouples();
+
+            var expected = new List<KeyValuePair<string, string>>()
+            { new KeyValuePair<string,string>("Jerry Thompson","Pamela Mensen"),
+              new KeyValuePair<string,string>("Gerald Black","Angela White"),
+            };
+
+            ;
+            Assert.That(result, Is.EqualTo(expected));
+            
         }
 
         [Test]
         public void AverageAgeTest() 
-        { 
+        {
+            var result = w.AverageAge();
+
+            Assert.That(result, Is.EqualTo(24.25));
         }
 
         [Test]
         public void WeddingPlacesByWifeTest()
-        { 
+        {
+            var result = w.WeddingPlacesByWife();
+
+            var expected = new List<KeyValuePair<string, string>>()
+            { new KeyValuePair<string,string>("Pamela Mensen","Los Angeles"),
+              new KeyValuePair<string,string>("Angela White","Hungary"),
+            };
+
+            ;
+            Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]
         public void WeddingPricesByHusbandTest()
-        { 
+        {
+            var result = w.WeddingPricesByHusband();
+
+            var expected = new List<KeyValuePair<string, int>>()
+            { new KeyValuePair<string,int>("Jerry Thompson",4000),
+              new KeyValuePair<string,int>("Gerald Black",2000),
+            };
+
+            ;
+            Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]
         public void WifeWhereHusbandIsOldestTest()
-        { 
+        {
+            var result = w.WifeWhereHusbandIsOldest();
+            ;
+            Assert.That(result, Is.EqualTo("Angela White"));
         }
 
     }
