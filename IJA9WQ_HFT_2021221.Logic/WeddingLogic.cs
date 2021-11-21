@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IJA9WQ_HFT_2021221.Logic
 {
-    class WeddingLogic
+    public class WeddingLogic
     {
         IWeddingRepository weddingRepo;
         public WeddingLogic(IWeddingRepository weddingRepo)

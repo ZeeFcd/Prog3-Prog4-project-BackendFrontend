@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IJA9WQ_HFT_2021221.Logic
 {
-    class WifeLogic
+    public class WifeLogic
     {
         IWifeRepository wifeRepo;
         public WifeLogic(IWifeRepository wifeRepo)
