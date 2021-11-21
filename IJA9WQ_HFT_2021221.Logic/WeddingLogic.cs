@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IJA9WQ_HFT_2021221.Logic
 {
-    public class WeddingLogic
+    public class WeddingLogic : IWeddingLogic
     {
         IWeddingRepository weddingRepo;
         public WeddingLogic(IWeddingRepository weddingRepo)
@@ -68,14 +68,14 @@ namespace IJA9WQ_HFT_2021221.Logic
         }
 
 
-        public double AverageAge() 
+        public double AverageAge()
         {
             var q = weddingRepo.ReadAll();
             return q.Select(x => x.Husband.Age).Concat(q.Select(y => y.Wife.Age)).Average();
-                         
+
         }
 
-        public  string WifeWhereHusbandIsOldest() 
+        public string WifeWhereHusbandIsOldest()
         {
             var q = weddingRepo.ReadAll();
 
@@ -87,7 +87,7 @@ namespace IJA9WQ_HFT_2021221.Logic
                     where x.Husband.Age == q.Max(y => y.Husband.Age)
                     select x.Wife.Name)
                      .FirstOrDefault();
-                       
+
         }
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IJA9WQ_HFT_2021221.Logic
 {
-    public  class HusbandLogic
+    public class HusbandLogic : IHusbandLogic
     {
         IHusbandRepository husbandRepo;
         public HusbandLogic(IHusbandRepository husbandRepo)
@@ -17,7 +17,7 @@ namespace IJA9WQ_HFT_2021221.Logic
         }
         public void Create(Husband husband)
         {
-            if (husband.Age<16)
+            if (husband.Age < 16)
             {
                 throw new ArgumentException("Not legal age for wedding!");
             }
@@ -44,7 +44,7 @@ namespace IJA9WQ_HFT_2021221.Logic
             husbandRepo.Update(husband);
         }
 
-       
+
 
 
     }
