@@ -20,35 +20,35 @@ namespace IJA9WQ_HFT_2021221.Endpoint.Controllers
             this.wl = wl;
         }
 
-        // GET: /wedding
+        // GET: /wife
         [HttpGet]
         public IEnumerable<Wife> Get()
         {
             return wl.ReadAll();
         }
 
-        // GET /wedding/5
+        // GET /wife/5
         [HttpGet("{id}")]
         public Wife Get(int id)
         {
             return wl.Read(id);
         }
 
-        // POST /wedding
+        // POST /wife
         [HttpPost]
         public void Post([FromBody] Wife value)
         {
             wl.Create(value);
         }
 
-        // PUT /wedding
+        // PUT /wife
         [HttpPut]
         public void Put([FromBody] Wife value)
         {
             wl.Update(value);
         }
 
-        // DELETE /wedding/5
+        // DELETE /wife/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
