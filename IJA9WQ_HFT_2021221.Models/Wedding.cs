@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace IJA9WQ_HFT_2021221.Models
@@ -15,8 +16,10 @@ namespace IJA9WQ_HFT_2021221.Models
         public int Id { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Husband Husband { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual Wife Wife { get; set; }
 
         [ForeignKey(nameof(Husband))]

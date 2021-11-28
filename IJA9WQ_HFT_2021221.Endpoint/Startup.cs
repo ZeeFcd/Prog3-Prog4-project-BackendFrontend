@@ -1,3 +1,6 @@
+using IJA9WQ_HFT_2021221.Data;
+using IJA9WQ_HFT_2021221.Logic;
+using IJA9WQ_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +19,17 @@ namespace IJA9WQ_HFT_2021221.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
+            services.AddTransient<IHusbandLogic, HusbandLogic>();
+            services.AddTransient<IWeddingLogic, WeddingLogic>();
+            services.AddTransient<IWifeLogic, WifeLogic>();
+
+            services.AddTransient<IHusbandRepository, HusbandRepository>();
+            services.AddTransient<IWeddingRepository, WeddingRepository>();
+            services.AddTransient<IWifeRepository, WifeRepository>();
+
+            services.AddTransient<WeddingDbContext, WeddingDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,10 +44,7 @@ namespace IJA9WQ_HFT_2021221.Endpoint
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
