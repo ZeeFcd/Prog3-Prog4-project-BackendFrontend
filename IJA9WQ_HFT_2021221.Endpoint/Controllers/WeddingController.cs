@@ -48,7 +48,7 @@ namespace IJA9WQ_HFT_2021221.Endpoint.Controllers
             wedl.Update(value);
         }
 
-        // DELETE /wedding/5
+        // DELETE /wedding/5 MINDIG WEddinGET KELL ELŐSZőr törölni aztán husbandet és aztán wifeot
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
