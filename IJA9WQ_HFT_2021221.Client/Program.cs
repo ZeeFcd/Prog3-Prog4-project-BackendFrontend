@@ -15,50 +15,52 @@ namespace IJA9WQ_HFT_2021221.Client
 
             RestService rest = new RestService("http://localhost:18885");
 
+            Menu indit = new Menu();
+
+
+
+
             //tesztelés
             #region 
             /*
-            WifeCrud.Create(rest, "Anyád", 43);
-            WifeCrud.Create(rest, "Anyád3", 53);
-            List<Wife> lista = WifeCrud.ReadAll(rest);
-            Wife feleseg = WifeCrud.Read(rest, 5);
+            CrudMethods<Wife>.CreateWife(rest, "Anyád", 43);
+            CrudMethods<Wife>.CreateWife(rest, "Anyád3", 53);
+            List<Wife> lista = CrudMethods<Wife>.ReadAll(rest,"wife");
+            Wife feleseg = CrudMethods<Wife>.Read(rest, 5,"wife");
             ;
-            WifeCrud.Update(rest, 6, "Anyád1", 423);
+            CrudMethods<Wife>.UpdateWife(rest, 6, "Anyád1", 423);
             ;
             ;
-            WifeCrud.Delete(rest, 7);
+            CrudMethods<Wife>.Delete(rest, 7, "wife");
 
             ;
 
-            HusbandCrud.Create(rest, "Anyád", 43, 6);
-            List<Husband> lista2 = HusbandCrud.ReadAll(rest);
-            Husband ferj = HusbandCrud.Read(rest, 5);
+            CrudMethods<Husband>.CreateHusband(rest, "Anyád", 43, 6);
+            List<Husband> lista2 = CrudMethods<Husband>.ReadAll(rest,"husband");
+            Husband ferj = CrudMethods<Husband>.Read(rest, 5, "husband");
             ;
-            HusbandCrud.Update(rest, 6, "Anyád2", 433, 6);
-            ;
-
-            WeddingCrud.Create(rest, 6,6, "MAgyaro", 60000);
-            List<Wedding> lista3 = WeddingCrud.ReadAll(rest);
-            Wedding esk = WeddingCrud.Read(rest, 5);
-            ;
-            WeddingCrud.Update(rest,6, 6, 6, "AngolO", 70000);
+            CrudMethods<Husband>.UpdateHusband(rest, 6, "Anyád2", 433, 6);
             ;
 
-            WeddingCrud.Delete(rest, 6);
+            CrudMethods<Wedding>.CreateWedding(rest, 6,6, "MAgyaro", 60000);
+            List<Wedding> lista3 = CrudMethods<Wedding>.ReadAll(rest,"wedding");
+            Wedding esk = CrudMethods<Wedding>.Read(rest, 5,"wedding");
+            ;
+            CrudMethods<Wedding>.UpdateWedding(rest,6, 6, 6, "AngolO", 70000);
+            ;
+
+            CrudMethods<Wedding>.Delete(rest, 6,"wedding");
 
             ;
 
-            HusbandCrud.Delete(rest, 6);
+            CrudMethods<Husband>.Delete(rest, 6,"husband");
 
             double atlag=StatMethods.AverageAge(rest);
-            List<KeyValuePair<string,string>> hazasok=StatMethods.MarriedCouples(rest);
-            List<KeyValuePair<string, string>> helyek=StatMethods.WeddingPlacesByWife(rest);
-            List<KeyValuePair<string, int>> arak = StatMethods.WeddingPricesByHusband(rest);
+            var hazasok=StatMethods.MarriedCouples(rest);
+            var helyek=StatMethods.WeddingPlacesByWife(rest);
+            var arak = StatMethods.WeddingPricesByHusband(rest);
             string felesegnevjnev=StatMethods.WifeWhereHusbandIsOldest(rest);*/
-            #endregion 
-
-
-
+            #endregion
             ;
 
         }
