@@ -14,9 +14,9 @@ namespace IJA9WQ_HFT_2021221.Client
             System.Threading.Thread.Sleep(8000);
 
             RestService rest = new RestService("http://localhost:18885");
-
-            Menu indit = new Menu();
-
+            
+            Menu menuIndit = new Menu(rest);
+            
 
 
 
