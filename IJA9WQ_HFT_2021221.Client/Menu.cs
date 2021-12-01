@@ -154,35 +154,48 @@ namespace IJA9WQ_HFT_2021221.Client
             {
                 case "a":
                     var husband = CrudMethods<Husband>.Read(rest,int.Parse(id), "husband");
-                    Console.WriteLine("-----------------------------");
-                    Console.WriteLine("Selected Husband:");
-                    Console.WriteLine("-----------------------------");                 
-                    Console.WriteLine("Husband ID: " + husband.Id + ", WifeID: " + husband.WifeID + ", Name: " + husband.Name + ", Age: " + husband.Age);
-                    Console.WriteLine();
-                    Console.WriteLine("Press any key to go back to menu...");
-                    Console.ReadKey();
+                    if (husband!=null)
+                    {
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine("Selected Husband:");
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine("Husband ID: " + husband.Id + ", WifeID: " + husband.WifeID + ", Name: " + husband.Name + ", Age: " + husband.Age);
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to go back to menu...");
+                        Console.ReadKey();
+
+                    }
+                    
                     break;
 
                 case "b":
                     var wife = CrudMethods<Wife>.Read(rest, int.Parse(id), "wife");
-                    Console.WriteLine("-----------------------------");
-                    Console.WriteLine("Selected wife:");
-                    Console.WriteLine("-----------------------------");
-                    Console.WriteLine("Wife ID: " + wife.Id + ", Name: " + wife.Name + ", Age: " + wife.Age);
-                    Console.WriteLine();
-                    Console.WriteLine("Press any key to go back to menu...");
-                    Console.ReadKey();
+                    if (wife!=null)
+                    {
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine("Selected wife:");
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine("Wife ID: " + wife.Id + ", Name: " + wife.Name + ", Age: " + wife.Age);
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to go back to menu...");
+                        Console.ReadKey();
+                    }
+                    
                     break;
 
                 case "c":
                     var wedding = CrudMethods<Wedding>.Read(rest, int.Parse(id), "wedding");
-                    Console.WriteLine("-----------------------------");
-                    Console.WriteLine("Weddings:");
-                    Console.WriteLine("-----------------------------");                   
-                    Console.WriteLine("Wedding ID: " + wedding.Id + ", HusbandID: " + wedding.HusbandID + ", WifeID: " + wedding.WifeID + ", Place: " + wedding.Place + ", Price: " + wedding.Price);
-                    Console.WriteLine();
-                    Console.WriteLine("Press any key to go back to menu...");
-                    Console.ReadKey();
+                    if (wedding!=null)
+                    {
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine("Weddings:");
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine("Wedding ID: " + wedding.Id + ", HusbandID: " + wedding.HusbandID + ", WifeID: " + wedding.WifeID + ", Place: " + wedding.Place + ", Price: " + wedding.Price);
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to go back to menu...");
+                        Console.ReadKey();
+                    }
+                    
                     break;
 
                 default:
