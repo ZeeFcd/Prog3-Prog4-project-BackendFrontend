@@ -14,13 +14,15 @@ namespace IJA9WQ_HFT_2021221.Client
             System.Threading.Thread.Sleep(8000);
 
             RestService rest = new RestService("http://localhost:18885");
-            
+
             Menu menuIndit = new Menu(rest);
+
             
 
 
-
-            //tesztelés
+            //api hívások tesztelése menu nélkül, Idegen kulcsoknak megfelelő model create sorrendben
+            //vagy különben elszáll exceptionnal az adatbázis ForeignKey constraint-ja miatt, tehát a következő a sorrend: wife--->husband---->wedding
+            //Deleténél meg pont fordított sorrend ugyan e miatt :wedding--->Husband--->wife
             #region 
             /*
             CrudMethods<Wife>.CreateWife(rest, "Anyád", 43);
@@ -54,6 +56,7 @@ namespace IJA9WQ_HFT_2021221.Client
             ;
 
             CrudMethods<Husband>.Delete(rest, 6,"husband");
+            CrudMethods<Wife>.Delete(rest, 6,"wife");
 
             double atlag=StatMethods.AverageAge(rest);
             var hazasok=StatMethods.MarriedCouples(rest);
