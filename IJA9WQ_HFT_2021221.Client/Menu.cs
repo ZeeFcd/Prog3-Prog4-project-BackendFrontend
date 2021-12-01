@@ -192,7 +192,73 @@ namespace IJA9WQ_HFT_2021221.Client
         }
 
         //Createlni csak wife--->husband---> wedding sorrendben (fk constraint)
-        private void CreateCW() { }
+        private void CreateCW()
+        {
+            Console.Clear();
+            Console.WriteLine("What table(Model) would you like to create? (You MUST make wife first, husband second, wedding third!)");
+            Console.Write("Choose one (a) husband, (b) wife, (c) wedding : ");
+            var read = Console.ReadLine();
+
+            switch (read)
+            {
+                case "a":
+                    Console.WriteLine("-----------------------------");
+                    Console.Write("Give WifeID: ");
+                    var wifeidH = Console.ReadLine();
+                    Console.Write("Give Name: ");
+                    var nameH = Console.ReadLine();
+                    Console.Write("Give Age (16 is legal age): ");
+                    var ageH = Console.ReadLine();
+
+                    CrudMethods<Husband>.CreateHusband(rest, nameH, int.Parse(ageH), int.Parse(wifeidH));
+
+                    Console.WriteLine("-----------------------------");                   
+                    Console.WriteLine("Created Husband;  WifeID: " + wifeidH + ", Name: " + nameH + ", Age: " + ageH);
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                case "b":
+                    Console.WriteLine("-----------------------------");
+                    Console.Write("Give Name: ");
+                    var nameW = Console.ReadLine();
+                    Console.Write("Give Age (16 is legal age): ");
+                    var ageW = Console.ReadLine();
+
+                    CrudMethods<Wife>.CreateWife(rest, nameW, int.Parse(ageW));
+
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Created Wife; Name: " + nameW + ", Age: " + ageW);
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                case "c":
+                    Console.WriteLine("-----------------------------");
+                    Console.Write("Give HusbandID: ");
+                    var husbandid = Console.ReadLine();
+                    Console.Write("Give WifeID: ");
+                    var wifeid = Console.ReadLine();
+                    Console.Write("Give Place: ");
+                    var place = Console.ReadLine();
+                    Console.Write("Give Price: ");
+                    var price = Console.ReadLine();
+
+                    CrudMethods<Wedding>.CreateWedding(rest, int.Parse(husbandid), int.Parse(wifeid), place,int.Parse(price));
+
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Created Wedding; HusbandID: " + husbandid + ", WifeID: " + wifeid + ", Place: "+place+ ", Price: " +price);
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                default:
+                    break;
+            }
+        }
         private void UpdateCW() { }
 
         //Delete-ni csak wedding--->husband---> wife sorrendben (fk constraint)
