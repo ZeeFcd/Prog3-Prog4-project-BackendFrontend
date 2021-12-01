@@ -148,7 +148,7 @@ namespace IJA9WQ_HFT_2021221.Client
             Console.WriteLine("From which table(Model) would you like to get one?");
             Console.Write("Choose one (a) husband, (b) wife, (c) wedding : ");
             var read = Console.ReadLine();
-            Console.Write("Give a model Id:");
+            Console.Write("Give a model Id: ");
             var id = Console.ReadLine();
 
             switch (read)
@@ -195,7 +195,7 @@ namespace IJA9WQ_HFT_2021221.Client
         private void CreateCW()
         {
             Console.Clear();
-            Console.WriteLine("What table(Model) would you like to create? (You MUST make wife first, husband second, wedding third!)");
+            Console.WriteLine("What row(Model) would you like to create? (You MUST make wife first, husband second, wedding third!)");
             Console.Write("Choose one (a) husband, (b) wife, (c) wedding : ");
             var read = Console.ReadLine();
 
@@ -259,7 +259,76 @@ namespace IJA9WQ_HFT_2021221.Client
                     break;
             }
         }
-        private void UpdateCW() { }
+        //idegen kulcsokat megfelelő utána járással tudunk csak updatelni mert adatbázis constraintek exceptiont dobnak
+        private void UpdateCW()
+        {
+            Console.Clear();
+            Console.WriteLine("What row(Model) would you like to update?");
+            Console.Write("Choose one (a) husband, (b) wife, (c) wedding : ");
+            var read = Console.ReadLine();
+            Console.Write("Give a model Id: ");
+            var id = Console.ReadLine();
+
+            switch (read)
+            {
+                case "a":
+                    Console.WriteLine("-----------------------------");
+                    Console.Write("Give updated WifeID: ");
+                    var wifeidH = Console.ReadLine();
+                    Console.Write("Give updated Name: ");
+                    var nameH = Console.ReadLine();
+                    Console.Write("Give updated Age (16 is legal age): ");
+                    var ageH = Console.ReadLine();
+
+                    CrudMethods<Husband>.UpdateHusband(rest, int.Parse(id),nameH, int.Parse(ageH), int.Parse(wifeidH));
+
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Updated Husband; Id: " +id+", Wife: " + wifeidH + ", Name: " + nameH + ", Age: " + ageH);
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                case "b":
+                    Console.WriteLine("-----------------------------");
+                    Console.Write("Give updated Name: ");
+                    var nameW = Console.ReadLine();
+                    Console.Write("Give updated Age (16 is legal age): ");
+                    var ageW = Console.ReadLine();
+
+                    CrudMethods<Wife>.UpdateWife(rest,int.Parse(id), nameW, int.Parse(ageW));
+
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Updated Wife; Id: "+id+" Name: " + nameW + ", Age: " + ageW);
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                case "c":
+                    Console.WriteLine("-----------------------------");
+                    Console.Write("Give updated HusbandID: ");
+                    var husbandid = Console.ReadLine();
+                    Console.Write("Give updated WifeID: ");
+                    var wifeid = Console.ReadLine();
+                    Console.Write("Give updated Place: ");
+                    var place = Console.ReadLine();
+                    Console.Write("Give updated Price: ");
+                    var price = Console.ReadLine();
+
+                    CrudMethods<Wedding>.UpdateWedding(rest, int.Parse(id),int.Parse(husbandid), int.Parse(wifeid), place, int.Parse(price));
+
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Created Wedding; Id: "+id+", HusbandID: " + husbandid + ", WifeID: " + wifeid + ", Place: " + place + ", Price: " + price);
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
         //Delete-ni csak wedding--->husband---> wife sorrendben (fk constraint)
         private void DeleteCW() { }
