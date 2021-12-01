@@ -18,7 +18,6 @@ namespace IJA9WQ_HFT_2021221.Client
         }
 
         //Non crud metódusok kiírása konzolra
-        private void SomeAction() { }
         private void MarriedCouplesCW() 
         {
             Console.Clear();

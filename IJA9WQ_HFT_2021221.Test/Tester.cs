@@ -15,13 +15,15 @@ namespace IJA9WQ_HFT_2021221.Test
         HusbandLogic h;
         WifeLogic wi;
         WeddingLogic w;
+        Mock<IWeddingRepository> mockWeddingRepository;
 
-        [SetUp]
+         [SetUp]
         public void Init()
         {
             var mockHusbandRepository = new Mock<IHusbandRepository>();
             var mockWifeRepository = new Mock<IWifeRepository>();
-            var mockWeddingRepository = new Mock<IWeddingRepository>();
+            mockWeddingRepository = new Mock<IWeddingRepository>();
+            
             h = new HusbandLogic(mockHusbandRepository.Object);
             wi = new WifeLogic(mockWifeRepository.Object);
 
@@ -29,13 +31,17 @@ namespace IJA9WQ_HFT_2021221.Test
             Husband fakehusband2 = new Husband() {Id = 2, Name = "Gerald Black", Age = 32 };
             Wife fakewife1 = new Wife() { Id = 1, Name = "Pamela Mensen", Age = 20 };
             Wife fakewife2 = new Wife() { Id=2 ,Name="Angela White", Age =28};
-            Wedding fakewedding1 = new Wedding() { Id=1 ,Place = "Los Angeles", Price = 4000, Husband =fakehusband1,Wife=fakewife1 };
-            Wedding fakewedding2 = new Wedding() { Id=2,Place="Hungary",Price=2000 ,Husband = fakehusband2, Wife = fakewife2 };
+            var fakewedding1 = new Wedding() { Id=1 ,Place = "Los Angeles", Price = 4000, Husband =fakehusband1,Wife=fakewife1 };
+            var fakewedding2 = new Wedding() { Id=2,Place="Hungary",Price=2000 ,Husband = fakehusband2, Wife = fakewife2 };
+            var weddings = new List<Wedding>() { fakewedding1, fakewedding2 }.AsQueryable();
 
-            var weddings = new List<Wedding>() {fakewedding1,fakewedding2  }.AsQueryable();
+            mockWeddingRepository.Setup(t => t.ReadAll()).Returns(weddings);
+            mockWeddingRepository.Setup(x => x.Read(It.IsAny<int>()));
+            mockWeddingRepository.Setup(y => y.Update(It.IsAny<Wedding>()));
+            mockWeddingRepository.Setup(z => z.Delete(It.IsAny<int>()));
 
-            mockWeddingRepository.Setup((t) => t.ReadAll())
-                .Returns(weddings);
+
+
 
             w = new WeddingLogic(mockWeddingRepository.Object);
             ;
@@ -145,6 +151,35 @@ namespace IJA9WQ_HFT_2021221.Test
             ;
             Assert.That(result, Is.EqualTo("Angela White"));
         }
+
+        [Test]
+        public void WeddingReadMethodCallTest() 
+        {
+            w.Read(3);
+            mockWeddingRepository.Verify(x => x.Read(3),Times.Once);
+                       
+        }
+
+        [Test]
+        public void WeddingDeletedMethodCallTest()
+        {
+            w.Delete(2);
+            mockWeddingRepository.Verify(x => x.Delete(2), Times.Once);
+
+        }
+
+
+        [Test]
+        public void WeddingUpdateMethodCallTest()
+        {           
+            var weddingObj= new Wedding() { Id = 2, Place = "Hungary", Price = 2000 };
+            w.Update(weddingObj);
+            mockWeddingRepository.Verify(x => x.Update(weddingObj), Times.Once);
+
+        }
+
+        
+
 
     }
 }
