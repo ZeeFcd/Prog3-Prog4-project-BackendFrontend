@@ -331,7 +331,51 @@ namespace IJA9WQ_HFT_2021221.Client
         }
 
         //Delete-ni csak wedding--->husband---> wife sorrendben (fk constraint)
-        private void DeleteCW() { }
+        private void DeleteCW() 
+        {
+            Console.Clear();
+            Console.WriteLine("From which table(Model) would you like to delete one? (You MUST delete wedding first, husband second, wife third!)");
+            Console.Write("Choose one (a) husband, (b) wife, (c) wedding : ");
+            var read = Console.ReadLine();
+            Console.Write("Give a model Id: ");
+            var id = Console.ReadLine();
+            switch (read)
+            {
+                case "a":
+                    CrudMethods<Husband>.Delete(rest, int.Parse(id), "husband");
+
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Selected Husband(id="+id+ ") deleted!");
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                case "b":
+                    CrudMethods<Wife>.Delete(rest, int.Parse(id), "wife");
+
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Selected Wife(id=" + id + ") deleted!");
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                case "c":
+                    CrudMethods<Wedding>.Delete(rest, int.Parse(id), "wedding");
+
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Selected Wedding(id=" + id + ") deleted!");
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to go back to menu...");
+                    Console.ReadKey();
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
 
 
         //Menu
