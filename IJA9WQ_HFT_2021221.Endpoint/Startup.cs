@@ -2,6 +2,7 @@ using IJA9WQ_HFT_2021221.Data;
 using IJA9WQ_HFT_2021221.Logic;
 using IJA9WQ_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +40,15 @@ namespace IJA9WQ_HFT_2021221.Endpoint
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                .Get<IExceptionHandlerPathFeature>()
+                .Error;
+                var response = new { error = exception.Message };
+                await context.Response.WriteAsJsonAsync(response);
+            }));
 
             app.UseRouting();
 
