@@ -22,11 +22,12 @@ namespace IJA9WQ_HFT_2021221.Data
         {
             if (!builder.IsConfigured)
             {
-                string conn =
-                    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\LocalDB.mdf;Integrated Security=True";
+                //string conn =
+                //    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\LocalDB.mdf;Integrated Security=True";
                 builder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(conn);
+                    .UseInMemoryDatabase("wedding");
+                //.UseSqlServer(conn);
             }
         }
 
