@@ -46,7 +46,7 @@ namespace IJA9WQ_HFT_2021221.Endpoint
                 var exception = context.Features
                 .Get<IExceptionHandlerPathFeature>()
                 .Error;
-                var response = new { error = exception.Message };
+                var response = new { Msg = exception.Message };
                 await context.Response.WriteAsJsonAsync(response);
             }));
 
