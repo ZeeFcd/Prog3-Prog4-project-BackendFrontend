@@ -10,28 +10,121 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="Husbands" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"  Grid.Column="0"/>
-        <Label Content="Wives" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"  Grid.Column="1"/>
-        <Label Content="Weddings" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"  Grid.Column="2"/>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Husbands}">
-            
-        </ListBox>
-        <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Wives}">
-
-        </ListBox>
-        <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Weddings}">
-
-        </ListBox>
+        <TabControl>
+            <TabItem Header="Husbands">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox ItemsSource="{Binding Husbands}" SelectedItem="{Binding SelectedHusband}" Grid.Column="0" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Column="1" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Name" Grid.Row="0" Grid.Column="0" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <Label Content="Age" Grid.Row="0" Grid.Column="1" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <Label Content="WifeID" Grid.Row="0" Grid.Column="2" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <TextBox Text="{Binding SelectedHusband.Name}" Grid.Row="1" Grid.Column="0" Padding="10" Margin="0,0,0,30"/>
+                            <TextBox Text="{Binding SelectedHusband.Age}"  Grid.Row="1" Grid.Column="1" Padding="10" Margin="0,0,0,30"/>
+                            <TextBox Text="{Binding SelectedHusband.WifeID}"  Grid.Row="1" Grid.Column="2" Padding="10" Margin="0,0,0,30"/>
+                        </Grid>
+                        <Button Content="Create" Padding="10" Margin="10" Command="{Binding CreateHusbandCommand}"/>
+                        <Button Content="Update" Padding="10" Margin="10" Command="{Binding UpdateHusbandCommand}"/>
+                        <Button Content="Delete" Padding="10" Margin="10" Command="{Binding DeleteHusbandCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Wives">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox  Grid.Column="0" ItemsSource="{Binding Wives}" SelectedItem="{Binding SelectedWife}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Column="1" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Name" Grid.Row="0" Grid.Column="0" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <Label Content="Age" Grid.Row="0" Grid.Column="1" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <TextBox Text="{Binding SelectedWife.Name}" Grid.Row="1" Grid.Column="0" Padding="10" Margin="0,0,0,30"/>
+                            <TextBox Text="{Binding SelectedWife.Age}" Grid.Row="1" Grid.Column="1" Padding="10" Margin="0,0,0,30"/>
+                        </Grid>
+                        <Button Content="Create" Padding="10" Margin="10" Command="{Binding CreateWifeCommand}"/>
+                        <Button Content="Update" Padding="10" Margin="10" Command="{Binding UpdateWifeCommand}"/>
+                        <Button Content="Delete" Padding="10" Margin="10" Command="{Binding DeleteWifeCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Weddings">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Grid.Column="0" ItemsSource="{Binding Weddings}" SelectedItem="{Binding SelectedWedding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel >
+                                    <Label Content="{Binding Place}" />
+                                    <Label Content="{Binding Price}" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Column="1" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Place" Grid.Row="0" Grid.Column="0" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <Label Content="Price" Grid.Row="0" Grid.Column="1" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <Label Content="HusbandID" Grid.Row="0" Grid.Column="2" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <Label Content="WifeID" Grid.Row="0" Grid.Column="3" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
+                            <TextBox Text="{Binding SelectedWedding.Place}" Grid.Row="1" Grid.Column="0" Padding="10" Margin="0,0,0,30"/>
+                            <TextBox Text="{Binding SelectedWedding.Price}" Grid.Row="1" Grid.Column="1" Padding="10" Margin="0,0,0,30"/>
+                            <TextBox Text="{Binding SelectedWedding.HusbandID}" Grid.Row="1" Grid.Column="2" Padding="10" Margin="0,0,0,30"/>
+                            <TextBox Text="{Binding SelectedWedding.WifeID}" Grid.Row="1" Grid.Column="3" Padding="10" Margin="0,0,0,30"/>
+                        </Grid>
+                        <Button Content="Create" Padding="10" Margin="10" Command="{Binding CreateWeddingCommand}"/>
+                        <Button Content="Update" Padding="10" Margin="10" Command="{Binding UpdateWeddingCommand}"/>
+                        <Button Content="Delete" Padding="10" Margin="10" Command="{Binding DeleteWeddingCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
-    
 </Window>
