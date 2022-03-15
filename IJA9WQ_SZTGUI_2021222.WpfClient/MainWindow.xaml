@@ -45,6 +45,7 @@
                         <Button Content="Create" Padding="10" Margin="10" Command="{Binding CreateHusbandCommand}"/>
                         <Button Content="Update" Padding="10" Margin="10" Command="{Binding UpdateHusbandCommand}"/>
                         <Button Content="Delete" Padding="10" Margin="10" Command="{Binding DeleteHusbandCommand}"/>
+                        <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -79,6 +80,7 @@
                         <Button Content="Create" Padding="10" Margin="10" Command="{Binding CreateWifeCommand}"/>
                         <Button Content="Update" Padding="10" Margin="10" Command="{Binding UpdateWifeCommand}"/>
                         <Button Content="Delete" Padding="10" Margin="10" Command="{Binding DeleteWifeCommand}"/>
+                        <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -122,6 +124,7 @@
                         <Button Content="Create" Padding="10" Margin="10" Command="{Binding CreateWeddingCommand}"/>
                         <Button Content="Update" Padding="10" Margin="10" Command="{Binding UpdateWeddingCommand}"/>
                         <Button Content="Delete" Padding="10" Margin="10" Command="{Binding DeleteWeddingCommand}"/>
+                        <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
                     </StackPanel>
                 </Grid>
             </TabItem>
