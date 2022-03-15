@@ -87,7 +87,7 @@ namespace IJA9WQ_SZTGUI_2021222.WpfClient
 
                     };
                     OnPropertyChanged();
-                    (DeleteWifeCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (DeleteWeddingCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
@@ -219,7 +219,7 @@ namespace IJA9WQ_SZTGUI_2021222.WpfClient
             },
             () =>
             {
-                return SelectedHusband != null;
+                return SelectedHusband.Id != 0;
             });
 
             DeleteWeddingCommand = new RelayCommand(() =>
@@ -235,7 +235,7 @@ namespace IJA9WQ_SZTGUI_2021222.WpfClient
             },
             () =>
             {
-                return SelectedWedding != null;
+                return SelectedWedding.Id != 0;
             });
 
             DeleteWifeCommand = new RelayCommand(() =>
@@ -251,7 +251,7 @@ namespace IJA9WQ_SZTGUI_2021222.WpfClient
             },
             () =>
             {
-                return SelectedWife != null;
+                return SelectedWife.Id != 0;
             });
 
             SelectedHusband = new Husband();
