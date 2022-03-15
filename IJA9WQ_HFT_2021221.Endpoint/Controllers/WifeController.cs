@@ -1,6 +1,8 @@
-﻿using IJA9WQ_HFT_2021221.Logic;
+﻿using IJA9WQ_HFT_2021221.Endpoint.Services;
+using IJA9WQ_HFT_2021221.Logic;
 using IJA9WQ_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +17,11 @@ namespace IJA9WQ_HFT_2021221.Endpoint.Controllers
     public class WifeController : ControllerBase
     {
         IWifeLogic wl;
-        public WifeController(IWifeLogic wl)
+        IHubContext<SignalRHub> hub;
+        public WifeController(IWifeLogic wl, IHubContext<SignalRHub> hub)
         {
             this.wl = wl;
+            this.hub=hub;
         }
 
         // GET: /wife
@@ -39,6 +43,7 @@ namespace IJA9WQ_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Wife value)
         {
             wl.Create(value);
+            hub.Clients.All.SendAsync("WifeCreated", value);
         }
 
         // PUT /wife
@@ -46,13 +51,16 @@ namespace IJA9WQ_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Wife value)
         {
             wl.Update(value);
+            hub.Clients.All.SendAsync("WifeUpdated", value);
         }
 
         // DELETE /wife/5   MINDIG WEddinGET KELL ELŐSZőr törölni aztán husbandet és aztán wifeot
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var wifeToDelete = wl.Read(id);
             wl.Delete(id);
+            hub.Clients.All.SendAsync("WifeDeleted", wifeToDelete);
         }
     }
 }

@@ -105,9 +105,9 @@ namespace IJA9WQ_SZTGUI_2021222.WpfClient
 
         public MainWindowViewModel()
         {
-            Husbands = new RestCollection<Husband>("http://localhost:18885/", "husband");
-            Wives = new RestCollection<Wife>("http://localhost:18885/", "wife");
-            Weddings = new RestCollection<Wedding>("http://localhost:18885/", "wedding");
+            Husbands = new RestCollection<Husband>("http://localhost:18885/", "husband","hub");
+            Wives = new RestCollection<Wife>("http://localhost:18885/", "wife","hub");
+            Weddings = new RestCollection<Wedding>("http://localhost:18885/", "wedding", "hub");
 
             CreateHusbandCommand = new RelayCommand(() =>
             {

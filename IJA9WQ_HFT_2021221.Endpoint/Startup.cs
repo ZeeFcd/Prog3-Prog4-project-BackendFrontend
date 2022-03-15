@@ -1,4 +1,5 @@
 using IJA9WQ_HFT_2021221.Data;
+using IJA9WQ_HFT_2021221.Endpoint.Services;
 using IJA9WQ_HFT_2021221.Logic;
 using IJA9WQ_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,8 @@ namespace IJA9WQ_HFT_2021221.Endpoint
             services.AddTransient<IWifeRepository, WifeRepository>();
 
             services.AddTransient<WeddingDbContext, WeddingDbContext>();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +58,7 @@ namespace IJA9WQ_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub") ;
             });
         }
     }
