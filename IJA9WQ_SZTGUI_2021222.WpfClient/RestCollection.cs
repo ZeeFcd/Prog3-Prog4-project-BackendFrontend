@@ -16,7 +16,7 @@ namespace IJA9WQ_SZTGUI_2021222.WpfClient
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "swagger")
+        public RestService(string baseurl, string pingableEndpoint = "husband")
         {
             bool isOk = false;
             do
