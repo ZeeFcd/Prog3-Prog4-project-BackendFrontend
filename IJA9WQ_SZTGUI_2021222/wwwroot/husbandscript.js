@@ -1,7 +1,10 @@
 ﻿let husbands = [];
 let connection = null;
+let husbandIdToUpdate = -1;
 gethusbanddata();
 setupSignalRhusband();
+
+
 
 
 function setupSignalRhusband() {
@@ -46,8 +49,31 @@ async function gethusbanddata() {
         .then(y => {
             husbands = y;
             console.log(husbands);
-            //display();
+            display();
         });
+}
+
+function display() {
+    document.getElementById('resultarea').innerHTML = "";
+    husbands.forEach(t => {
+        document.getElementById('resultarea').innerHTML +=
+            "<tr><td>" + t.id + "</td><td>"
+            + t.name + "</td><td>" +
+            + t.age + "</td><td>" +
+            + t.wifeID + "</td><td>" +
+            `<button type="button" onclick="remove(${t.id})">Delete</button>` +
+            `<button type="button" onclick="showupdate(${t.id})">Update</button>`
+            + "</td></tr>";
+    });
+}
+
+function showupdate(id) {
+
+    document.getElementById('husbandnametoupdate').value = husbands.find(t => t['id'] == id)['name'];
+    document.getElementById('husbandagetoupdate').value = husbands.find(t => t['id'] == id)['age'];
+    document.getElementById('wifeidtoupdate').value = husbands.find(t => t['id'] == id)['wifeID'];
+    document.getElementById('updateformdiv').style.display = 'flex';
+    husbandIdToUpdate = id;
 }
 
 function remove(id) {
@@ -66,12 +92,34 @@ function remove(id) {
 }
 
 function create() {
-    let name = document.getElementById('actorname').value;
+    let name = document.getElementById('husbandname').value;
+    let age = document.getElementById('age').value;
+    let wifeid = document.getElementById('wifeid').value;
     fetch('http://localhost:18885/husband', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { actorName: name })
+            { Name: name, Age: age, WifeID: wifeid })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            gethusbanddata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+}
+
+function update() {
+    document.getElementById('updateformdiv').style.display = 'none';
+    let name = document.getElementById('husbandnametoupdate').value;
+    let age = document.getElementById('husbandagetoupdate').value;
+    let wifeid = document.getElementById('wifeidtoupdate').value;
+    fetch('http://localhost:18885/husband', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { Id: husbandIdToUpdate, Name: name, Age: age, WifeID: wifeid })
     })
         .then(response => response)
         .then(data => {

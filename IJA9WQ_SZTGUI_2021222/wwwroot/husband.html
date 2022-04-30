@@ -3,9 +3,45 @@
 <head>
     <meta charset="utf-8" />
     <title>Husbands</title>
+    <link rel="stylesheet" href="qstyle.css" />
 </head>
 <body>
     <a href="index.html">Back to Menu</a>
+    <h1>Husband Catalog</h1>
+
+    <div id="formdiv">
+        <label>Husband Name</label>
+        <input type="text" id="husbandname" />
+        <label>Husband Age</label>
+        <input type="number" id="age" />
+        <label>WifeID</label>
+        <input type="number" id="wifeid" />
+        <button type="button" onclick="create()">Add Husband</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label>Husband Name</label>
+        <input type="text" id="husbandnametoupdate" />
+        <label>Husband Age</label>
+        <input type="number" id="husbandagetoupdate" />
+        <label>WifeID</label>
+        <input type="number" id="wifeidtoupdate" />
+        <button type="button" onclick="update()">Update Husband</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>WifeID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
