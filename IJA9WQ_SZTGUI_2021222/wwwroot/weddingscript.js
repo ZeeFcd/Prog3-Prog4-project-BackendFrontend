@@ -48,3 +48,35 @@ async function getweddingdata() {
             //display();
         });
 }
+
+function remove(id) {
+    fetch('http://localhost:18885/wedding/' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', },
+        body: null
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getweddingdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+}
+
+function create() {
+    let name = document.getElementById('actorname').value;
+    fetch('http://localhost:18885/wedding', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { actorName: name })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getweddingdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+}

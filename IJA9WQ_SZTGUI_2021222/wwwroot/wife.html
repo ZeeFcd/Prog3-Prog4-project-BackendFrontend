@@ -3,9 +3,39 @@
 <head>
     <meta charset="utf-8" />
     <title>Wives</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <a href="index.html">Back to Menu</a>
+    <h1>Wife Catalog</h1>
+
+    <div id="formdiv">
+        <label>Wife Name</label>
+        <input type="text" id="wifename" />
+        <label>Wife Age</label>
+        <input type="number" id="age" />
+        <button type="button" onclick="create()">Add Wife</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label>Wife Name</label>
+        <input type="text" id="wifenametoupdate" />
+        <label>Wife Age</label>
+        <input type="number" id="wifeagetoupdate" />
+        <button type="button" onclick="update()">Update Wife</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
